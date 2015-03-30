@@ -49,5 +49,8 @@
     "uglifyify": "^3.0.1",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.3.0"
+  },
+  "dependencies": {
+    "date-formatter": "git://github.com/djforth/dateformatter.git"
   }
 }
