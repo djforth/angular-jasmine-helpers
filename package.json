@@ -44,6 +44,7 @@
     "karma-opera-launcher": "^0.1.0",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1",
+    "karma-story-reporter": "^0.3.1",
     "lodash": "^3.2.0",
     "require-dir": "^0.1.0",
     "uglifyify": "^3.0.1",

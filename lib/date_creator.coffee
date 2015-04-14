@@ -2,71 +2,85 @@
 _ = require 'lodash'
 
 DateFormatter = require("date-formatter")
-dateFmt       = new DateFormatter()
+# dateFmt       = new DateFormatter()
 
 class DateCreator
   month_list:[31,28,31,30,31,30,31,31,30,31,30,31]
   time_list:[9,13,19]
-  month:1
+  month:0
   date_day:1
   time:0
-  display:{}
 
-  constructor:()->
+
+  constructor:(start_date="2014-01-01 09:00")->
+    # date = new Date()
+    @dateFmt = new DateFormatter(start_date)
     @date_day = 1
-    dateFmt = new DateFormatter()
-
-    @display.time = dateFmt.fixTime(@time_list[@time])
-    @display.date = dateFmt.fixTime(@date_day)
-    @display.month = dateFmt.fixTime(@month)
-
-
-  create_dateTime:()->
-    "2014-#{@display.month}-#{@display.date} #{@display.time}:00"
-
-
-  create_dateTimeLater:()->
-    dateFmt = new DateFormatter()
-    time = dateFmt.fixTime(@time_list[@time] + 1)
-    "2014-#{@display.month}-#{@display.date} #{time}:00"
+    # console.log @dateFmt
+    @date     = @dateFmt.getDate()
+    @month    = @date.getMonth()
+    @day_date = @date.getDate()
+    # @display.time = dateFmt.fixTime(@time_list[@time])
+    # @display.date = dateFmt.fixTime(@date_day)
+    # @display.month = dateFmt.fixTime(@month)
 
   create_date:()->
-    "2014-#{@display.month}-#{@display.date}"
+
+    return @dateFmt.formatDate("%Y-%m-%d")
+
+  create_dateTime:()->
+    return @dateFmt.formatDate("%Y-%m-%d %H:%M")
+
+  create_dateTimeLater:()->
+    # @date = @dateFmt.getDate()
+    @date.setHours(@date.getHours()+1)
+    @dateFmt = new DateFormatter(@date)
+    return @dateFmt.formatDate("%Y-%m-%d %H:%M")
+
 
   create_date_obj:(str)->
-    dateFmt = new DateFormatter(str)
-    return dateFmt.getDate()
+    @dateFmt = new DateFormatter(str)
+    return @dateFmt.getDate()
 
-  create_datetime_obj:(str)->
-    dateFmt = new DateFormatter(str)
-    return dateFmt.getDate()
+  create_time:()->
+    return @dateFmt.formatDate("%H:%M")
+
+  create_timeLater:()->
+    # @date = @dateFmt.getDate()
+    @date.setHours(@date.getHours()+1)
+    @dateFmt = new DateFormatter(@date)
+    return @dateFmt.formatDate("%H:%M")
+
+
 
   incrementTime:()->
+    year = @date.getFullYear()
+
     @time++
 
     if @time == 3
       @date_day++
       @time = 0
 
-    if @day >= @month_list[@month-1]
+    if @date_day >= @month_list[@month]
       @month++
       @date_day = 1
 
-    dateFmt = new DateFormatter()
-    @display.time  = dateFmt.fixTime(@time_list[@time])
-    @display.date  = dateFmt.fixTime(@date_day)
-    @display.month = dateFmt.fixTime(@month)
+    @dateFmt = new DateFormatter(year, @month, @date_day, @time_list[@time])
+
+    @date = @dateFmt.getDate()
 
   incrementDate:()->
-    @day++
+    year = @date.getFullYear()
+    @date_day++
 
-    if @day >= @month_list[@month-1]
+    if @date_day >= @month_list[@month]
       @month++
-      @day = 1
+      @date_day = 1
 
-    dateFmt = new DateFormatter()
-    @display.date  = dateFmt.fixTime(@day)
-    @display.month = dateFmt.fixTime(@month)
+    @dateFmt = new DateFormatter(year, @month, @date_day, @time_list[@time])
+
+    @date = @dateFmt.getDate()
 
 
 
