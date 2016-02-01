@@ -7,7 +7,7 @@ var colorConvert    = require("./lib/colorConvert")
 
 module.exports = {
     colorConvert    : colorConvert
-  , controllerTests : controllerTest
+  , controllerTests : controllerTests
   , dateCreator     : dateCreator
   , directiveTests  : directiveTests
   , factoryTests    : factoryTests
