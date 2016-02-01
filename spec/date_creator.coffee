@@ -1,9 +1,9 @@
-require('babel/polyfill')
+
 _ = require('lodash')
 
 DateCreator = require('../lib/date_creator.coffee')
 
-describe 'DateCreator', ->
+describe('DateCreator', ->
 
   creator = null
 
@@ -95,7 +95,7 @@ describe 'DateCreator', ->
       date = creator.date;
       expect(date).toEqual(new Date(2014, 1, 1, 9))
 
-
+);
 
 
 

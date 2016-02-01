@@ -1,7 +1,7 @@
 
 _ = require 'lodash'
 
-DateFormatter = require("date-formatter")
+DateFormatter = require("@djforth/date-formatter")
 # dateFmt       = new DateFormatter()
 
 class DateCreator
