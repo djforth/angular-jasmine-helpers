@@ -1,6 +1,6 @@
 {
   "name": "@djforth/angular-jasmine-helpers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "angular-jasmine-helpers",
   "main": "index.js",
   "scripts": {
